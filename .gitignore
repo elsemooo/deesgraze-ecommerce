@@ -4,5 +4,6 @@ package-lock.json
 admin
 client
 workTree*
+server
 #server 
 .env
