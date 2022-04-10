@@ -11,7 +11,8 @@ import {
 } from "../Constants/OrderConstants";
 import { logout } from "./userActions";
 import axios from "axios";
-
+const heroku = "https://deesgraze.herokuapp.com"
+const localHost = "http://localhost:5000"
 export const listOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_LIST_REQUEST });
@@ -26,7 +27,7 @@ export const listOrders = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`https://deesgraze.herokuapp.com/api/orders/all`, config);
+    const { data } = await axios.get(`${localHost}/api/orders/all`, config);
 
     dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
   } catch (error) {
@@ -59,7 +60,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`https://deesgraze.herokuapp.com/api/orders/${id}`, config);
+    const { data } = await axios.get(`${localHost}/api/orders/${id}`, config);
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -92,7 +93,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `https://deesgraze.herokuapp.com/api/orders/${order._id}/delivered`,
+      `${localHost}/api/orders/${order._id}/delivered`,
       {},
       config
     );

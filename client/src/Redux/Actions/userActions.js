@@ -16,7 +16,8 @@ import {
 } from "../Constants/UserContants";
 import axios from "axios";
 import { ORDER_LIST_MY_RESET } from "../Constants/OrderConstants";
-
+const heroku = "https://deesgraze.herokuapp.com"
+const localHost = "http://localhost:5000"
 // LOGIN
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -29,7 +30,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `https://deesgraze.herokuapp.com/api/users/login`,
+      `${localHost}/api/users/login`,
       { email, password },
       config
     );
@@ -67,7 +68,7 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `https://deesgraze.herokuapp.com/api/users`,
+      `${localHost}/api/users`,
       { name, email, password },
       config
     );
@@ -100,7 +101,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`https://deesgraze.herokuapp.com/api/users/${id}`, config);
+    const { data } = await axios.get(`${localHost}/api/users/${id}`, config);
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -133,7 +134,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`https://deesgraze.herokuapp.com/api/users/profile`, user, config);
+    const { data } = await axios.put(`${localHost}/api/users/profile`, user, config);
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 

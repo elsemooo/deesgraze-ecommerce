@@ -1,5 +1,10 @@
 #general
 node_modules
 package-lock.json
+admin
+client
+server
+workTree*
+.vscode
 #server 
 .env

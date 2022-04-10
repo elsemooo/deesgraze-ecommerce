@@ -17,6 +17,8 @@ import { CART_CLEAR_ITEMS } from "../Constants/CartConstants";
 import { logout } from "./userActions";
 
 // CREATE ORDER
+  const heroku = "https://deesgraze.herokuapp.com"
+  const localHost = "http://localhost:5000"
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_CREATE_REQUEST });
@@ -32,7 +34,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`https://deesgraze.herokuapp.com/api/orders`, order, config);
+    const { data } = await axios.post(`${localHost}/api/orders`, order, config);
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
     dispatch({ type: CART_CLEAR_ITEMS, payload: data });
 
@@ -67,7 +69,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`https://deesgraze.herokuapp.com/api/orders/${id}`, config);
+    const { data } = await axios.get(`${localHost}/api/orders/${id}`, config);
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -102,7 +104,7 @@ export const payOrder =
       };
 
       const { data } = await axios.put(
-        `https://deesgraze.herokuapp.com/api/orders/${orderId}/pay`,
+        `${localHost}/api/orders/${orderId}/pay`,
         paymentResult,
         config
       );
@@ -137,7 +139,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`https://deesgraze.herokuapp.com/api/orders/`, config);
+    const { data } = await axios.get(`${localHost}/api/orders/`, config);
     dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: data });
   } catch (error) {
     const message =

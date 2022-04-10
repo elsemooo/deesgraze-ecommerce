@@ -8,7 +8,9 @@ import {
 
 // ADD TO CART
 export const addToCart = (id, qty, talla) => async (dispatch, getState) => {
-  const { data } = await axios.get(`https://deesgraze.herokuapp.com/api/products/${id}`);
+  const heroku = "https://deesgraze .herokuapp.com"
+  const localHost = "http://localhost:5000"
+  const { data } = await axios.get(`${localHost}/api/products/${id}`);
 
   dispatch({
     type: CART_ADD_ITEM,

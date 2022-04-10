@@ -10,7 +10,8 @@ import {
 } from "../Constants/UserContants";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+const heroku = "https://deesgraze.herokuapp.com"
+const localHost = "http://localhost:5000"
 // LOGIN
 export const login = (email, password) => async (dispatch) => {
   const ToastObjects = {
@@ -29,7 +30,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `https://deesgraze.herokuapp.com/api/users/login`,
+      `${localHost}/api/users/login`,
       { email, password },
       config
     );
@@ -81,7 +82,7 @@ export const listUser = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`https://deesgraze.herokuapp.com/api/users`, config);
+    const { data } = await axios.get(`${localHost}/api/users`, config);
 
     dispatch({ type: USER_LIST_SUCCESS, payload: data });
   } catch (error) {
