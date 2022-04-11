@@ -1,5 +1,11 @@
 #general
 node_modules
 package-lock.json
+admin/
+client/
+server/
+workTreeAdmin/
+workTreeClient/
+workTreeServer/
 #server 
 .env
