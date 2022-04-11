@@ -9,7 +9,7 @@ const productRoute = express.Router();
 productRoute.get(
   "/",
   asyncHandler(async (req, res) => {
-    const pageSize = 12;
+    const pageSize = 40;
     const page = Number(req.query.pageNumber) || 1;
     const keyword = req.query.keyword
       ? {
@@ -20,24 +20,29 @@ productRoute.get(
         }
       : {};
     const count = await Product.countDocuments({ ...keyword });
-    const products = await Product.find({ ...keyword })
-      .limit(pageSize)
-      .skip(pageSize * (page - 1))
-      .sort({ _id: -1 });
+    const products = await Product.find({}).sort({ _id: -1 });
+    // const products = await Product.find({ ...keyword })
+      // .limit(pageSize)
+      // .skip(pageSize * (page - 1))
+      // sort({ _id: -1 });
     res.json({ products, page, pages: Math.ceil(count / pageSize) });
   })
+  // asyncHandler(async (req, res) => {
+  //   const products = await Product.find({}).sort({ _id: -1 });
+  //   res.json(products);
+  // })
 );
 
 // ADMIN GET ALL PRODUCT WITHOUT SEARCH AND PEGINATION
-productRoute.get(
-  "/all",
-  protect,
-  admin,
-  asyncHandler(async (req, res) => {
-    const products = await Product.find({}).sort({ _id: -1 });
-    res.json(products);
-  })
-);
+// productRoute.get(
+//   "/all",
+//   // protect,
+//   // admin,
+//   asyncHandler(async (req, res) => {
+//     const products = await Product.find({}).sort({ _id: -1 });
+//     res.json(products);
+//   })
+// );
 
 // GET SINGLE PRODUCT
 productRoute.get(
