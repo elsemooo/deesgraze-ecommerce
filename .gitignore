@@ -4,4 +4,7 @@ package-lock.json
 workTree*
 .vscode
 #server 
+*/*.env
+*/.env
+*.env
 .env
