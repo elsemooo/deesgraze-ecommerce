@@ -8,3 +8,4 @@ workTree*
 */.env
 *.env
 .env
+server/.env
