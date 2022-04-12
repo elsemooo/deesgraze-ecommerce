@@ -7,5 +7,7 @@ server/
 workTreeAdmin/
 workTreeClient/
 workTreeServer/
+Routes/
+workTreeMain/
 #server 
 .env
