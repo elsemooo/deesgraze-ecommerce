@@ -69,7 +69,7 @@ const MainProducts = () => {
           ) : (
             <div className="row">
               {/* Products */}
-              {products.map((product) => (
+              {products.products.map((product) => (
                 <Product product={product} key={product._id} />
               ))}
             </div>
